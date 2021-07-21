@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: task-service
+  cloud:  # nacos地址
+    nacos:
+      server-addr: nacos-server:8848
+      config:
+        file-extension: yaml
+    stream:
+      bindings:
+        group_message_out: {destination: tio_group, content-type: application/plain, group: order-group, consumer.maxAttempts: 1}
+        exchange_trades_in: {destination: exchange_trades_out, content-type: application/plain, group: order-group}
+      rocketmq:
+        binder:
+          name-server: rocket-server:9876
+  profiles:
+    active: dev
+# 拉取的配置文件的dataID =  task-service-dev.yaml

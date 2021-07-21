@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: finance-service
+  cloud:  # nacos地址
+    nacos:
+      server-addr: nacos-server:8848
+      config:
+        file-extension: yaml
+  profiles:
+    active: dev
+# 拉取的配置文件的dataID =  finance-service-dev.yaml

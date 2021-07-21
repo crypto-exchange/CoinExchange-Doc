@@ -1,0 +1,4 @@
+com\bjsxt\dto\UserDto.class
+com\bjsxt\feign\UserBankServiceFeign.class
+com\bjsxt\feign\UserServiceFeign.class
+com\bjsxt\dto\UserBankDto.class

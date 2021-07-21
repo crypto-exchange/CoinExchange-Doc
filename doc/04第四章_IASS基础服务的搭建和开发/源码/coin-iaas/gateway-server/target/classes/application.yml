@@ -1,0 +1,69 @@
+server:
+  port: 80
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos-server:8848 # 修改本机的host 文件
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true # admin-service ADMIN-SERVICE  /admin-service/** -> 微服务（ADMIN-SERVICE）
+      routes:
+        - id: admin-service_router
+          uri: lb://admin-service   # 转发到那个目的地
+          predicates:
+            - Path=/admin/**
+          filters:
+            - StripPrefix=1 # 当前端访问/admin/login - >login 将admin自动的去掉
+        - id: member-service_router
+          uri: lb://member-service   # 转发到那个目的地
+          predicates:
+            - Path=/user/**
+          filters:
+            - StripPrefix=1 # 当前端访问/user/login - >login 将user自动的去掉
+        - id: finance-service_router
+          uri: lb://finance-service   # 转发到那个目的地
+          predicates:
+            - Path=/finance/**
+          filters:
+            - StripPrefix=1 # 当前端访问/finance/xx,去掉finance
+        - id: exchange-service_router # 交易系统的路由
+          uri: lb://exchange-service   # 转发到那个目的地
+          predicates:
+            - Path=/exchange/**
+          filters:
+            - StripPrefix=1 # 当前端访问/exchange/xx,exchange
+        - id: test_router
+          uri: http://www.aliyun.com
+          predicates:
+            - Path=/product
+                # /test->http://www.baidu.com 网关自己内部会构建请求去访问我们要访问的地址 GET:http://www.baidu.com/test
+     # 通过网关来完成对2 种维度的限流： 网关维度 + API 分组
+    sentinel:
+      transport:
+        dashboard: sentinel-server:8858  # sentinel-dashboard 放在ecs 里面
+      datasource:
+#        ds1.file:
+#          file: classpath:gw-flow.json  # 网关 + API分组的限流
+#          ruleType: gw_flow
+         ds1.nacos: #com.alibaba.csp.sentinel.datasource.nacos.NacosDataSource 使用Nacos持久化我的sentinel 数据时，需要添加nacos-datasource的依赖
+           serverAddr: nacos-server:8848
+           dataId: gw-flow
+           ruleType: gw_flow
+#
+#        ds2.file:
+#          file: classpath:api-group.json
+#          ruleType: gw_api_group
+         ds2.nacos:
+           serverAddr: nacos-server:8848
+           dataId: api-group
+           ruleType: gw_api_group # 我们演示了sentinel-dashboard 的规则的定义，而且规则定义好了后，我们的网关能立马的感知到（生效）（nacos无法感知），但是我们下次重启，会丢失规则。--》nacos
+
+  redis:
+    host: redis-server
+    port: 6380
+    password: Ltd3411??

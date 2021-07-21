@@ -1,0 +1,2295 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "交易行情",
+        "version": "5.0.1",
+        "title": "交易行情"
+    },
+    "host": "127.0.0.1:7076",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "account-controller",
+            "description": "数字货币-资产管理"
+        },
+        {
+            "name": "coin-controller",
+            "description": "Coin Controller"
+        },
+        {
+            "name": "coin-recharge-controller",
+            "description": "资产管理-充值"
+        },
+        {
+            "name": "coin-withdraw-controller",
+            "description": "资产管理-数字货币提现"
+        },
+        {
+            "name": "config-controller",
+            "description": "配置信息"
+        },
+        {
+            "name": "home-controller",
+            "description": "数字货币-首页 REST API"
+        },
+        {
+            "name": "notice-controller",
+            "description": "Notice Controller"
+        },
+        {
+            "name": "order-manager-controller",
+            "description": "数字货币-订单管理"
+        },
+        {
+            "name": "otc-controller",
+            "description": "数字货币-场外交易"
+        },
+        {
+            "name": "rand-code-controller",
+            "description": "发送验证码 REST API"
+        },
+        {
+            "name": "sms-controller",
+            "description": "发送短信 REST API"
+        },
+        {
+            "name": "trade-market-controller",
+            "description": "币币交易市场 REST API"
+        },
+        {
+            "name": "trade-order-controller",
+            "description": "币币交易订单 REST API"
+        },
+        {
+            "name": "trading-area-controller",
+            "description": "Trading Area Controller"
+        },
+        {
+            "name": "upload-controller",
+            "description": "文件上传 REST API"
+        },
+        {
+            "name": "user-account-controller",
+            "description": "币币交易用户资产 REST API"
+        },
+        {
+            "name": "user-wallet-controller",
+            "description": "提币钱包地址 REST API"
+        },
+        {
+            "name": "work-issue-controller",
+            "description": "工单系统 REST API"
+        },
+        {
+            "name": "矿池",
+            "description": "矿池"
+        },
+        {
+            "name": "矿池数据",
+            "description": "矿池数据"
+        },
+        {
+            "name": "邀请奖励",
+            "description": "邀请奖励"
+        }
+    ],
+    "paths": {
+        "/account/accounts": {
+            "get": {
+                "tags": [
+                    "account-controller"
+                ],
+                "summary": "资金账户列表",
+                "description": "资金账户",
+                "operationId": "accountsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/api/v1/dm/sendTo": {
+            "post": {
+                "tags": [
+                    "rand-code-controller"
+                ],
+                "summary": "发送验证码",
+                "description": "发送验证码",
+                "operationId": "sendToUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "form",
+                        "description": "form",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RandCodeForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/v1/dm/verify": {
+            "post": {
+                "tags": [
+                    "rand-code-controller"
+                ],
+                "summary": "verify",
+                "operationId": "verifyUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "randCodeVerifyDTO",
+                        "description": "randCodeVerifyDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RandCodeVerifyDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/coin/baseCoin": {
+            "get": {
+                "tags": [
+                    "coin-controller"
+                ],
+                "summary": "获取数字货币基础币列表",
+                "description": "获取数字货币基础币列表",
+                "operationId": "baseCoinUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/coin/trade/wallet": {
+            "get": {
+                "tags": [
+                    "coin-controller"
+                ],
+                "summary": "COIN-001 获取钱包币信息",
+                "description": "获取钱包币信息",
+                "operationId": "walletCoinUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/config/getConfig": {
+            "get": {
+                "tags": [
+                    "config-controller"
+                ],
+                "summary": "getConfig",
+                "operationId": "getConfigUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "code",
+                        "description": "code",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "in": "body",
+                        "name": "type",
+                        "description": "type",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/home/other/banner": {
+            "get": {
+                "tags": [
+                    "home-controller"
+                ],
+                "summary": "HOME-002 首页banner信息",
+                "description": "首页banner信息",
+                "operationId": "bannerUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/home/other/documents": {
+            "get": {
+                "tags": [
+                    "home-controller"
+                ],
+                "summary": "HOME-003 首页底部文案信息",
+                "description": "首页底部文案信息",
+                "operationId": "documentsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/mine/data": {
+            "get": {
+                "tags": [
+                    "矿池数据"
+                ],
+                "summary": "mine--002  查询挖矿信息",
+                "description": "挖矿信息",
+                "operationId": "getMinerInfoUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/mine/pool": {
+            "get": {
+                "tags": [
+                    "矿池"
+                ],
+                "summary": "查看矿池",
+                "operationId": "getByUserUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            },
+            "post": {
+                "tags": [
+                    "矿池"
+                ],
+                "summary": "创建矿池",
+                "operationId": "createUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "createMinePoolDTO",
+                        "description": "createMinePoolDTO",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateMinePoolDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/notice/{current}/{size}": {
+            "get": {
+                "tags": [
+                    "notice-controller"
+                ],
+                "summary": "notice",
+                "operationId": "noticeUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "current",
+                        "in": "path",
+                        "description": "current",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "size",
+                        "in": "path",
+                        "description": "size",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/notice/{noticeId}": {
+            "get": {
+                "tags": [
+                    "notice-controller"
+                ],
+                "summary": "notice",
+                "operationId": "noticeUsingGET_1",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "noticeId",
+                        "in": "path",
+                        "description": "noticeId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/orderManager/dealOrder": {
+            "post": {
+                "tags": [
+                    "order-manager-controller"
+                ],
+                "summary": "ORDER-002 成交记录",
+                "description": "成交记录",
+                "operationId": "dealOrderUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "form",
+                        "description": "form",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/OrderForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/orderManager/entrustOrder": {
+            "post": {
+                "tags": [
+                    "order-manager-controller"
+                ],
+                "summary": "ORDER-001 委托记录",
+                "description": "委托记录",
+                "operationId": "entrustOrderUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "form",
+                        "description": "form",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/OrderForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/otc/account/{coinName}": {
+            "get": {
+                "tags": [
+                    "otc-controller"
+                ],
+                "summary": "OUTSIDE-001 C2C账户资产",
+                "description": "C2C账户资产",
+                "operationId": "userAccountUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "coinName",
+                        "in": "path",
+                        "description": "coinName",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/otc/c2c/buy": {
+            "post": {
+                "tags": [
+                    "otc-controller"
+                ],
+                "summary": "OUTSIDE-003 c2c买入",
+                "description": "c2c买入",
+                "operationId": "c2cBuyUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "cashRecharge",
+                        "description": "cashRecharge",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CashRechargeForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/otc/c2c/buy/record": {
+            "post": {
+                "tags": [
+                    "otc-controller"
+                ],
+                "summary": "OUTSIDE-005 c2c买入记录",
+                "description": "c2c买入记录",
+                "operationId": "c2cBuyListUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "form",
+                        "description": "form",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CashStatusForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/otc/c2c/sell": {
+            "post": {
+                "tags": [
+                    "otc-controller"
+                ],
+                "summary": "OUTSIDE-004 c2c卖出",
+                "description": "c2c卖出",
+                "operationId": "c2cSellUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "cashWithdrawals",
+                        "description": "cashWithdrawals",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CashWithDrawalsForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/otc/c2c/sell/record": {
+            "post": {
+                "tags": [
+                    "otc-controller"
+                ],
+                "summary": "OUTSIDE-005 c2c卖出记录",
+                "description": "c2c卖出记录",
+                "operationId": "c2cSellListUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "form",
+                        "description": "form",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CashStatusForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/preupload": {
+            "get": {
+                "tags": [
+                    "upload-controller"
+                ],
+                "summary": "preupload",
+                "operationId": "preuploadUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/recharge/address/{coinId}": {
+            "get": {
+                "tags": [
+                    "coin-recharge-controller"
+                ],
+                "summary": "COIN-RECHARGE-001 获取充值地址(过时,请使用币种名称)",
+                "description": "获取充值地址",
+                "operationId": "rechargeAddressUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "coinId",
+                        "in": "path",
+                        "description": "币种ID",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/recharge/record": {
+            "get": {
+                "tags": [
+                    "coin-recharge-controller"
+                ],
+                "summary": "COIN-RECHARGE-002 获取充值记录",
+                "description": "获取充值记录",
+                "operationId": "rechargeRecordUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "coinId",
+                        "in": "query",
+                        "description": "币种ID",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "current",
+                        "in": "query",
+                        "description": "当前页码",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "每页大小",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/reward/info": {
+            "get": {
+                "tags": [
+                    "邀请奖励"
+                ],
+                "summary": "可解冻邀请奖励",
+                "description": "可解冻邀请奖励",
+                "operationId": "infoUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/reward/invite/{userId}": {
+            "post": {
+                "tags": [
+                    "邀请奖励"
+                ],
+                "summary": "inviteReward",
+                "operationId": "inviteRewardUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "userId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/reward/register/{userId}": {
+            "post": {
+                "tags": [
+                    "邀请奖励"
+                ],
+                "summary": "registerReward",
+                "operationId": "registerRewardUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "userId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/reward/unfreeze": {
+            "post": {
+                "tags": [
+                    "邀请奖励"
+                ],
+                "summary": "解冻邀请奖励",
+                "description": "解冻邀请奖励",
+                "operationId": "unfreezeUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/sms/sendTo": {
+            "post": {
+                "tags": [
+                    "sms-controller"
+                ],
+                "summary": "sendTo",
+                "operationId": "sendToUsingPOST_1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "form",
+                        "description": "form",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SendForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/trade/market": {
+            "get": {
+                "tags": [
+                    "trade-market-controller"
+                ],
+                "summary": "tradeMarketList",
+                "operationId": "tradeMarketListUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/trade/market/depth/{symbol}/{mergeType}": {
+            "get": {
+                "tags": [
+                    "trade-market-controller"
+                ],
+                "summary": "币币交易市场深度",
+                "description": "币币交易市场深度",
+                "operationId": "depthUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "mergeType",
+                        "in": "path",
+                        "description": "合并深度类型",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "path",
+                        "description": "交易对标识符",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/trade/market/favorite": {
+            "get": {
+                "tags": [
+                    "trade-market-controller"
+                ],
+                "summary": "个人收藏交易市场信息",
+                "description": "个人收藏交易市场信息",
+                "operationId": "favoriteUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/trade/market/getBySymbol/{symbol}": {
+            "get": {
+                "tags": [
+                    "trade-market-controller"
+                ],
+                "summary": "getBySymbol",
+                "operationId": "getBySymbolUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "path",
+                        "description": "symbol",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/trade/market/kline/{symbol}/{lintType}": {
+            "get": {
+                "tags": [
+                    "trade-market-controller"
+                ],
+                "summary": "币币交易K线数据",
+                "description": "lineType取值范围<br/>5sec: 5秒钟<br />1min: 1分钟<br />5min: 5分钟<br />15min: 15分钟<br />30min: 30分钟<br />1hour: 1小时<br />2hour: 2小时<br />4hour: 4小时<br />6hour: 6小时<br />12hour: 12小时<br />1day: 1天<br />1week: 1周<br />1mon: 1月<br />1year: 1年<br />",
+                "operationId": "klineUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "lintType",
+                        "in": "path",
+                        "description": "K线类型",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "path",
+                        "description": "交易对标识符",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/trade/market/refresh": {
+            "get": {
+                "tags": [
+                    "trade-market-controller"
+                ],
+                "summary": "refresh",
+                "operationId": "refreshUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "marketId",
+                        "in": "query",
+                        "description": "marketId",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "price",
+                        "in": "query",
+                        "description": "price",
+                        "required": false,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/trade/market/ticker/{symbol}": {
+            "get": {
+                "tags": [
+                    "trade-market-controller"
+                ],
+                "summary": "币币交易实时行情",
+                "description": "币币交易实时行情",
+                "operationId": "tickerUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "path",
+                        "description": "交易对标识符",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/trade/market/trades/{symbol}": {
+            "get": {
+                "tags": [
+                    "trade-market-controller"
+                ],
+                "summary": "币币交易最新成交列表",
+                "description": "币币交易最新成交列表",
+                "operationId": "tradesUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "path",
+                        "description": "交易对标识符",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/trade/market/{areaId}": {
+            "get": {
+                "tags": [
+                    "trade-market-controller"
+                ],
+                "summary": "首页市场信息",
+                "description": "首页市场信息",
+                "operationId": "marketsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "areaId",
+                        "in": "path",
+                        "description": "areaId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/trade/order/entrusts": {
+            "post": {
+                "tags": [
+                    "trade-order-controller"
+                ],
+                "summary": "ORDER-001 币币交易委托下单",
+                "description": "币币交易委托下单",
+                "operationId": "createEntrustOrderUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "order",
+                        "description": "币币交易委托下单请求参数",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CreateTradeOrderDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/trade/order/entrusts/{orderId}": {
+            "get": {
+                "tags": [
+                    "trade-order-controller"
+                ],
+                "summary": "根据订单号查询委托订单",
+                "description": "根据订单号查询委托订单",
+                "operationId": "getEntrustOrderUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "orderId",
+                        "in": "path",
+                        "description": "币币交易委托订单号",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            },
+            "delete": {
+                "tags": [
+                    "trade-order-controller"
+                ],
+                "summary": "ORDER-002 币币交易撤销委托",
+                "description": "币币交易撤销委托",
+                "operationId": "cancelEntrustOrderUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "orderId",
+                        "in": "path",
+                        "description": "币币交易委托订单号",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/trade/order/entrusts/{symbol}/{current}/{size}": {
+            "get": {
+                "tags": [
+                    "trade-order-controller"
+                ],
+                "summary": "ORDER-003 币币交易未完成委托订单",
+                "description": "币币交易未完成委托订单",
+                "operationId": "entrustOrderUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "current",
+                        "in": "path",
+                        "description": "当前页码",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "size",
+                        "in": "path",
+                        "description": "每页显示数据量",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "path",
+                        "description": "交易对标识符",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/trade/order/history/{symbol}/{current}/{size}": {
+            "get": {
+                "tags": [
+                    "trade-order-controller"
+                ],
+                "summary": "ORDER-004 币币交易历史委托订单",
+                "description": "币币交易历史委托订单",
+                "operationId": "historyOrderUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "current",
+                        "in": "path",
+                        "description": "当前页码",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "size",
+                        "in": "path",
+                        "description": "每页显示数据量",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "symbol",
+                        "in": "path",
+                        "description": "交易对标识符",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/trading_area": {
+            "get": {
+                "tags": [
+                    "trading-area-controller"
+                ],
+                "summary": "tradingArea",
+                "operationId": "tradingAreaUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/trading_area/list": {
+            "get": {
+                "tags": [
+                    "trading-area-controller"
+                ],
+                "summary": "list",
+                "operationId": "listUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/upload/callback": {
+            "post": {
+                "tags": [
+                    "upload-controller"
+                ],
+                "summary": "callback",
+                "operationId": "callbackUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "payload",
+                        "description": "payload",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/user/account/asset/{symbol}": {
+            "get": {
+                "tags": [
+                    "user-account-controller"
+                ],
+                "summary": "ACCOUNT-001 币币交易用户交易对账户资产",
+                "description": "币币交易用户交易对账户资产",
+                "operationId": "assetUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "symbol",
+                        "in": "path",
+                        "description": "交易对标识符",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/user/wallet/address": {
+            "post": {
+                "tags": [
+                    "user-wallet-controller"
+                ],
+                "summary": "WITHDRAW-ADDRESS-001 添加提币地址",
+                "description": "添加提币地址",
+                "operationId": "addAddressUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "withdrawAddress",
+                        "description": "添加提币地址请求参数",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/WithdrawAddressDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/user/wallet/deleteAddress": {
+            "post": {
+                "tags": [
+                    "user-wallet-controller"
+                ],
+                "summary": "删除钱包地址",
+                "description": "删除钱包地址",
+                "operationId": "deleteAddressUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "form",
+                        "description": "form",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DeleteWalletForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/user/wallet/getCoinAddress/{coinId}": {
+            "get": {
+                "tags": [
+                    "user-wallet-controller"
+                ],
+                "summary": "用户的提币地址",
+                "operationId": "selectUserWalletListUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "coinId",
+                        "in": "path",
+                        "description": "coinId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/withdraw": {
+            "post": {
+                "tags": [
+                    "coin-withdraw-controller"
+                ],
+                "summary": "COIN-WITHDRAW-001 申请提币",
+                "description": "申请提币",
+                "operationId": "applyWithdrawUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "applyWithdraw",
+                        "description": "申请提币参数",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/ApplyWithdrawDTO"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/withdraw/record": {
+            "get": {
+                "tags": [
+                    "coin-withdraw-controller"
+                ],
+                "summary": "用户提现",
+                "operationId": "queryWithdrawRecordUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "coinId",
+                        "in": "query",
+                        "description": "币种ID",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "current",
+                        "in": "query",
+                        "description": "当前页码",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "description": "每页大小",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/workIssue/addWorkIssue": {
+            "post": {
+                "tags": [
+                    "work-issue-controller"
+                ],
+                "summary": "添加工单",
+                "description": "添加工单",
+                "operationId": "addWorkIssueUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "workIssueForm",
+                        "description": "workIssueForm",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/WorkIssueForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/workIssue/issueList/{current}/{size}": {
+            "get": {
+                "tags": [
+                    "work-issue-controller"
+                ],
+                "summary": "获取工单列表",
+                "description": "获取工单列表",
+                "operationId": "issueListUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "current",
+                        "in": "path",
+                        "description": "当前页码",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "size",
+                        "in": "path",
+                        "description": "每页显示数据量",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        }
+    },
+    "securityDefinitions": {
+        "Authorization": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "definitions": {
+        "ApplyWithdrawDTO": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "example": "13hQVEstgo4iPQZv9C7VELnLWF7UWtF4Q3",
+                    "description": "钱包地址"
+                },
+                "addressId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 123,
+                    "description": "钱包地址ID"
+                },
+                "amount": {
+                    "type": "number",
+                    "example": 100.0,
+                    "description": "提现金额"
+                },
+                "coinId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1,
+                    "description": "币种ID"
+                },
+                "payPassword": {
+                    "type": "string",
+                    "example": "******",
+                    "description": "资金交易密码"
+                },
+                "verifyCode": {
+                    "type": "string",
+                    "example": 123456,
+                    "description": "短信验证码"
+                }
+            },
+            "title": "ApplyWithdrawDTO"
+        },
+        "CashRechargeForm": {
+            "type": "object",
+            "required": [
+                "coinId",
+                "mum",
+                "num"
+            ],
+            "properties": {
+                "coinId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1,
+                    "description": "币种ID"
+                },
+                "mum": {
+                    "type": "number",
+                    "example": 1.0,
+                    "description": "充值金额"
+                },
+                "num": {
+                    "type": "number",
+                    "example": 1.0,
+                    "description": "充值数量"
+                }
+            },
+            "title": "CashRechargeForm"
+        },
+        "CashStatusForm": {
+            "type": "object",
+            "properties": {
+                "current": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1,
+                    "description": "页码"
+                },
+                "size": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 10,
+                    "description": "分页大小"
+                },
+                "status": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1,
+                    "description": "状态"
+                }
+            },
+            "title": "CashStatusForm"
+        },
+        "CashWithDrawalsForm": {
+            "type": "object",
+            "required": [
+                "coinId",
+                "mum",
+                "num",
+                "payPassword",
+                "validateCode"
+            ],
+            "properties": {
+                "coinId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1,
+                    "description": "币种ID不能为空"
+                },
+                "mum": {
+                    "type": "number",
+                    "example": 1.0,
+                    "description": "提现金额"
+                },
+                "num": {
+                    "type": "number",
+                    "example": 1.0,
+                    "description": "提现数量"
+                },
+                "payPassword": {
+                    "type": "string",
+                    "example": "e10adc3949ba59abbe56e057f20f883e",
+                    "description": "支付密码"
+                },
+                "validateCode": {
+                    "type": "string",
+                    "example": 1111,
+                    "description": "手机验证码"
+                }
+            },
+            "title": "CashWithDrawalsForm"
+        },
+        "CreateMinePoolDTO": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "title": "CreateMinePoolDTO"
+        },
+        "CreateTradeOrderDTO": {
+            "type": "object",
+            "properties": {
+                "price": {
+                    "type": "number",
+                    "example": 7100.0,
+                    "description": "委托价格"
+                },
+                "symbol": {
+                    "type": "string",
+                    "example": "BTCUSDT",
+                    "description": "交易对标识符"
+                },
+                "type": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1,
+                    "description": "委托类型：1-买；2-卖"
+                },
+                "volume": {
+                    "type": "number",
+                    "example": 1.5,
+                    "description": "委托数量"
+                }
+            },
+            "title": "CreateTradeOrderDTO"
+        },
+        "DeleteWalletForm": {
+            "type": "object",
+            "required": [
+                "addressId",
+                "payPassword"
+            ],
+            "properties": {
+                "addressId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1,
+                    "description": "钱包地址ID"
+                },
+                "payPassword": {
+                    "type": "string",
+                    "example": 1,
+                    "description": "支付密码"
+                }
+            },
+            "title": "DeleteWalletForm"
+        },
+        "OrderForm": {
+            "type": "object",
+            "required": [
+                "symbol"
+            ],
+            "properties": {
+                "current": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1,
+                    "description": "页码"
+                },
+                "size": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 10,
+                    "description": "分页大小"
+                },
+                "symbol": {
+                    "type": "string",
+                    "example": 1,
+                    "description": "市场symbol"
+                },
+                "type": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1,
+                    "description": "type"
+                }
+            },
+            "title": "OrderForm"
+        },
+        "RandCodeForm": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "countryCode": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "templateCode": {
+                    "type": "string"
+                }
+            },
+            "title": "RandCodeForm"
+        },
+        "RandCodeVerifyDTO": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "countryCode": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "templateCode": {
+                    "type": "string"
+                }
+            },
+            "title": "RandCodeVerifyDTO"
+        },
+        "Response": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object"
+                },
+                "errcode": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "errmsg": {
+                    "type": "string"
+                }
+            },
+            "title": "Response"
+        },
+        "SendForm": {
+            "type": "object",
+            "properties": {
+                "countryCode": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "mobile": {
+                    "type": "string"
+                },
+                "templateCode": {
+                    "type": "string",
+                    "example": 100001,
+                    "description": "短信模板ID"
+                },
+                "templateParam": {
+                    "type": "object",
+                    "description": "短信模板变量替换JSON串"
+                }
+            },
+            "title": "SendForm"
+        },
+        "WithdrawAddressDTO": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "string",
+                    "example": "1CK6KHY6MHgYvmRQ4PAafKYDrg1ejbH1cE",
+                    "description": "钱包地址"
+                },
+                "coinId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 11111,
+                    "description": "币种ID"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "比特币冷钱包",
+                    "description": "提币地址名称"
+                },
+                "payPassword": {
+                    "type": "string",
+                    "example": "******",
+                    "description": "支付密码"
+                }
+            },
+            "title": "WithdrawAddressDTO"
+        },
+        "WorkIssueForm": {
+            "type": "object",
+            "required": [
+                "question"
+            ],
+            "properties": {
+                "question": {
+                    "type": "string",
+                    "example": 1,
+                    "description": "工单内容"
+                }
+            },
+            "title": "WorkIssueForm"
+        }
+    }
+}

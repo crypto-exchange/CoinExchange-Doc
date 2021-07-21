@@ -1,0 +1,9 @@
+com\bjsxt\AuthorizationApplication.class
+com\bjsxt\service\impl\UserServiceDetailsServiceImpl$2.class
+com\bjsxt\config\ResourceServerConfig.class
+com\bjsxt\service\impl\UserServiceDetailsServiceImpl.class
+com\bjsxt\controller\UserInfoController.class
+com\bjsxt\service\impl\UserServiceDetailsServiceImpl$1.class
+com\bjsxt\config\AuthorizationServerConfig.class
+com\bjsxt\constant\LoginConstant.class
+com\bjsxt\config\WebSecurityConfig.class

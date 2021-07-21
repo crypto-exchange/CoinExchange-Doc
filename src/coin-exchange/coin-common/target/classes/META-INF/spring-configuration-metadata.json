@@ -1,0 +1,60 @@
+{
+  "groups": [
+    {
+      "name": "swagger2",
+      "type": "com.bjsxt.config.swagger.SwaggerProperties",
+      "sourceType": "com.bjsxt.config.swagger.SwaggerProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "swagger2.base-package",
+      "type": "java.lang.String",
+      "description": "包扫描的路径",
+      "sourceType": "com.bjsxt.config.swagger.SwaggerProperties"
+    },
+    {
+      "name": "swagger2.description",
+      "type": "java.lang.String",
+      "description": "API的描述",
+      "sourceType": "com.bjsxt.config.swagger.SwaggerProperties"
+    },
+    {
+      "name": "swagger2.email",
+      "type": "java.lang.String",
+      "description": "联系人的邮箱",
+      "sourceType": "com.bjsxt.config.swagger.SwaggerProperties"
+    },
+    {
+      "name": "swagger2.name",
+      "type": "java.lang.String",
+      "description": "联系人的名称",
+      "sourceType": "com.bjsxt.config.swagger.SwaggerProperties"
+    },
+    {
+      "name": "swagger2.terms-of-service-url",
+      "type": "java.lang.String",
+      "description": "API的服务团队",
+      "sourceType": "com.bjsxt.config.swagger.SwaggerProperties"
+    },
+    {
+      "name": "swagger2.title",
+      "type": "java.lang.String",
+      "description": "API的标题",
+      "sourceType": "com.bjsxt.config.swagger.SwaggerProperties"
+    },
+    {
+      "name": "swagger2.url",
+      "type": "java.lang.String",
+      "description": "联系人的主页",
+      "sourceType": "com.bjsxt.config.swagger.SwaggerProperties"
+    },
+    {
+      "name": "swagger2.version",
+      "type": "java.lang.String",
+      "description": "API的版本号",
+      "sourceType": "com.bjsxt.config.swagger.SwaggerProperties"
+    }
+  ],
+  "hints": []
+}

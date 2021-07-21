@@ -1,0 +1,53 @@
+{
+  "groups": [
+    {
+      "name": "geetest",
+      "type": "com.bjsxt.config.GeetestProperties",
+      "sourceType": "com.bjsxt.config.GeetestProperties"
+    },
+    {
+      "name": "identify",
+      "type": "com.bjsxt.config.IdProperties",
+      "sourceType": "com.bjsxt.config.IdProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "geetest.geetest-id",
+      "type": "java.lang.String",
+      "description": "极验的ID",
+      "sourceType": "com.bjsxt.config.GeetestProperties"
+    },
+    {
+      "name": "geetest.geetest-key",
+      "type": "java.lang.String",
+      "description": "极验的key",
+      "sourceType": "com.bjsxt.config.GeetestProperties"
+    },
+    {
+      "name": "identify.app-code",
+      "type": "java.lang.String",
+      "description": "你购买的appCode",
+      "sourceType": "com.bjsxt.config.IdProperties"
+    },
+    {
+      "name": "identify.app-key",
+      "type": "java.lang.String",
+      "description": "你购买的appKey",
+      "sourceType": "com.bjsxt.config.IdProperties"
+    },
+    {
+      "name": "identify.app-secret",
+      "type": "java.lang.String",
+      "description": "你购买的appSecret",
+      "sourceType": "com.bjsxt.config.IdProperties"
+    },
+    {
+      "name": "identify.url",
+      "type": "java.lang.String",
+      "description": "身份认证的URL地址  \/\/ https:\/\/idcert.market.alicloudapi.com\/idcard?idCard=%s&name=%s",
+      "sourceType": "com.bjsxt.config.IdProperties"
+    }
+  ],
+  "hints": []
+}

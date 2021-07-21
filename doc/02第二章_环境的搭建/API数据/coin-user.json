@@ -1,0 +1,1361 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "会员中心",
+        "version": "5.0.1",
+        "title": "会员中心"
+    },
+    "host": "127.0.0.1:7072",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "极验验证",
+            "description": "Geetest Captcha Controller"
+        },
+        {
+            "name": "用户信息",
+            "description": "User Controller"
+        },
+        {
+            "name": "用户登录",
+            "description": "Login Controller"
+        },
+        {
+            "name": "用户登录日志",
+            "description": "User Login Log Controller"
+        },
+        {
+            "name": "用户绑卡信息表",
+            "description": "User Bank Controller"
+        }
+    ],
+    "paths": {
+        "/cgi-bin/token": {
+            "get": {
+                "tags": [
+                    "用户登录"
+                ],
+                "summary": "获取access_token（机器人专用）",
+                "operationId": "oauthTokenUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "access_key",
+                        "in": "query",
+                        "description": "access_key",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "secret",
+                        "in": "query",
+                        "description": "secret",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/gt/register": {
+            "get": {
+                "tags": [
+                    "极验验证"
+                ],
+                "summary": "验证预处理",
+                "operationId": "registerUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "用户登录"
+                ],
+                "summary": "用户登录",
+                "operationId": "loginUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "form",
+                        "description": "用户登录信息",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/登录表单内容"
+                        }
+                    }
+                ],
+                "responses": {
+                    "-1": {
+                        "description": "注册失败，系统繁忙",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    },
+                    "0": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "40002": {
+                        "description": "用户已存在（手机号码已注册）",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/login/history": {
+            "get": {
+                "tags": [
+                    "用户登录日志"
+                ],
+                "summary": "登录历史",
+                "operationId": "listUsingGET_1",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "0": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/IPage"
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/refreshToken": {
+            "get": {
+                "tags": [
+                    "用户登录"
+                ],
+                "summary": "刷新密钥",
+                "operationId": "refreshTokenUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/user/authAccount": {
+            "post": {
+                "tags": [
+                    "用户信息"
+                ],
+                "summary": "ACCOUNT-007 实名认证",
+                "description": "实名认证",
+                "operationId": "authAccountUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "form",
+                        "description": "form",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/用户身份认证信息"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/user/authUser": {
+            "post": {
+                "tags": [
+                    "用户信息"
+                ],
+                "summary": "高级认证",
+                "description": "高级认证",
+                "operationId": "AuthUserUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "list",
+                        "description": "list",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/user/checkEmail": {
+            "get": {
+                "tags": [
+                    "用户信息"
+                ],
+                "summary": "邮箱注册校验",
+                "description": "邮箱注册校验",
+                "operationId": "checkEmailUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "用户邮箱",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/user/checkTel": {
+            "get": {
+                "tags": [
+                    "用户信息"
+                ],
+                "summary": "手机号注册校验",
+                "description": "手机号注册校验",
+                "operationId": "checkTelUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "countryCode",
+                        "in": "query",
+                        "description": "区号",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "mobile",
+                        "in": "query",
+                        "description": "用户手机号",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/user/checkUname": {
+            "get": {
+                "tags": [
+                    "用户信息"
+                ],
+                "summary": "用户名注册校验",
+                "description": "用户名注册校验",
+                "operationId": "checkUnameUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "description": "用户名",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/user/ga/cancel": {
+            "post": {
+                "tags": [
+                    "用户信息"
+                ],
+                "summary": "关闭GA验证",
+                "operationId": "googleAuthenticatorCancelUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "form",
+                        "description": "form",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/GoogleAuthenticatorCancelForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "40004": {
+                        "description": "谷歌验证码错误，请重新输入",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/user/ga/generate": {
+            "get": {
+                "tags": [
+                    "用户信息"
+                ],
+                "summary": "GA秘钥生成",
+                "operationId": "googleAuthenticatorGenerateUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "0": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/user/ga/verify": {
+            "post": {
+                "tags": [
+                    "用户信息"
+                ],
+                "summary": "GA验证并绑定",
+                "operationId": "googleAuthenticatorVerifyUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "form",
+                        "description": "form",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/GoogleAuthenticatorVerifyForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "40004": {
+                        "description": "谷歌验证码错误，请重新输入",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/user/info": {
+            "get": {
+                "tags": [
+                    "用户信息"
+                ],
+                "summary": "用户信息",
+                "operationId": "infoUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/user/invitation": {
+            "get": {
+                "tags": [
+                    "用户信息"
+                ],
+                "summary": "ACCOUNT-005 邀请列表",
+                "description": "邀请列表",
+                "operationId": "invitationUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/user/lang/{lang}": {
+            "get": {
+                "tags": [
+                    "用户信息"
+                ],
+                "summary": "切换语言",
+                "operationId": "langUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "lang",
+                        "in": "query",
+                        "description": "语言-zh en",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/user/register": {
+            "post": {
+                "tags": [
+                    "用户信息"
+                ],
+                "summary": "首页注册信息",
+                "description": "首页注册信息",
+                "operationId": "registerUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "form",
+                        "description": "注册信息",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RegisterForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/user/setPassword": {
+            "post": {
+                "tags": [
+                    "用户信息"
+                ],
+                "summary": "忘记密码",
+                "description": "忘记密码",
+                "operationId": "setPasswordUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "form",
+                        "description": "form",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SetPasswordForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/user/setPayPassword": {
+            "post": {
+                "tags": [
+                    "用户信息"
+                ],
+                "summary": "设置资金密码",
+                "description": "设置资金密码",
+                "operationId": "setPayPasswordUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "changePayPasswordForm",
+                        "description": "changePayPasswordForm",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ChangePayPasswordForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/user/updateEmail": {
+            "post": {
+                "tags": [
+                    "用户信息"
+                ],
+                "summary": "ACCOUNT-004 修改邮箱",
+                "description": "修改邮箱",
+                "operationId": "updateEmailUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "form",
+                        "description": "form",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ChangeEmailForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/user/updateLoginPassword": {
+            "post": {
+                "tags": [
+                    "用户信息"
+                ],
+                "summary": "ACCOUNT-004 修改登录密码",
+                "description": "修改登录密码",
+                "operationId": "updatePasswordUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "form",
+                        "description": "form",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ChangePasswordForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/user/updatePayPassword": {
+            "post": {
+                "tags": [
+                    "用户信息"
+                ],
+                "summary": "ACCOUNT-006 修改资金密码",
+                "description": "修改资金密码",
+                "operationId": "updatePayPasswordUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "form",
+                        "description": "form",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ChangePasswordForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/user/updatePhone": {
+            "post": {
+                "tags": [
+                    "用户信息"
+                ],
+                "summary": "ACCOUNT-003 修改手机号",
+                "description": "修改手机号",
+                "operationId": "updatePhoneUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "form",
+                        "description": "form",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ChangePhoneForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/user/userBase": {
+            "post": {
+                "tags": [
+                    "用户信息"
+                ],
+                "summary": "设置用户基础信息",
+                "description": "设置用户基础信息",
+                "operationId": "userBaseUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "form",
+                        "description": "form",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/用户基本信息"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/v3/cards": {
+            "get": {
+                "tags": [
+                    "用户绑卡信息表"
+                ],
+                "summary": "绑卡列表",
+                "operationId": "listUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "0": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/IPage"
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/v3/cards/bank": {
+            "get": {
+                "tags": [
+                    "用户绑卡信息表"
+                ],
+                "summary": "OUTSIDE-002 C2C个人银行卡",
+                "description": "银行卡",
+                "operationId": "bankUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/v3/cards/bind": {
+            "post": {
+                "tags": [
+                    "用户绑卡信息表"
+                ],
+                "summary": "添加银行卡",
+                "operationId": "bindUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "form",
+                        "description": "银行卡信息",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UserBankForm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "40003": {
+                        "description": "短信验证码错误",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "deprecated": false
+            }
+        }
+    },
+    "securityDefinitions": {
+        "Authorization": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "definitions": {
+        "ChangeEmailForm": {
+            "type": "object",
+            "properties": {
+                "newEmail": {
+                    "type": "string"
+                },
+                "oldValidateCode": {
+                    "type": "string"
+                },
+                "validateCode": {
+                    "type": "string"
+                }
+            },
+            "title": "ChangeEmailForm"
+        },
+        "ChangePasswordForm": {
+            "type": "object",
+            "properties": {
+                "newpassword": {
+                    "type": "string"
+                },
+                "oldpassword": {
+                    "type": "string"
+                },
+                "validateCode": {
+                    "type": "string"
+                }
+            },
+            "title": "ChangePasswordForm"
+        },
+        "ChangePayPasswordForm": {
+            "type": "object",
+            "properties": {
+                "payPassword": {
+                    "type": "string"
+                },
+                "validateCode": {
+                    "type": "string"
+                }
+            },
+            "title": "ChangePayPasswordForm"
+        },
+        "ChangePhoneForm": {
+            "type": "object",
+            "properties": {
+                "countryCode": {
+                    "type": "string"
+                },
+                "newMobilePhone": {
+                    "type": "string"
+                },
+                "oldValidateCode": {
+                    "type": "string"
+                },
+                "validateCode": {
+                    "type": "string"
+                }
+            },
+            "title": "ChangePhoneForm"
+        },
+        "GoogleAuthenticatorCancelForm": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "GoogleAuthenticatorCancelForm"
+        },
+        "GoogleAuthenticatorVerifyForm": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "secret": {
+                    "type": "string"
+                }
+            },
+            "title": "GoogleAuthenticatorVerifyForm"
+        },
+        "IPage": {
+            "type": "object",
+            "properties": {
+                "current": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "pages": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "records": {
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                },
+                "size": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "IPage"
+        },
+        "RegisterForm": {
+            "type": "object",
+            "properties": {
+                "countryCode": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "geetest_challenge": {
+                    "type": "string"
+                },
+                "geetest_seccode": {
+                    "type": "string"
+                },
+                "geetest_validate": {
+                    "type": "string"
+                },
+                "invitionCode": {
+                    "type": "string"
+                },
+                "mobile": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "userName": {
+                    "type": "string"
+                },
+                "validateCode": {
+                    "type": "string"
+                }
+            },
+            "title": "RegisterForm"
+        },
+        "Response": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object"
+                },
+                "errcode": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "errmsg": {
+                    "type": "string"
+                }
+            },
+            "title": "Response"
+        },
+        "SetPasswordForm": {
+            "type": "object",
+            "properties": {
+                "countryCode": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "mobile": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "validateCode": {
+                    "type": "string"
+                }
+            },
+            "title": "SetPasswordForm"
+        },
+        "UserBankForm": {
+            "type": "object",
+            "properties": {
+                "bank": {
+                    "type": "string"
+                },
+                "bankCard": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "payPassword": {
+                    "type": "string"
+                },
+                "realName": {
+                    "type": "string"
+                },
+                "remark": {
+                    "type": "string"
+                }
+            },
+            "title": "UserBankForm"
+        },
+        "用户基本信息": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "qiang.ins@gmail.com",
+                    "description": "邮箱"
+                },
+                "payPassword": {
+                    "type": "string",
+                    "example": "qiang",
+                    "description": "资金密码"
+                },
+                "username": {
+                    "type": "string",
+                    "example": "qiang",
+                    "description": "用户名"
+                }
+            },
+            "title": "用户基本信息",
+            "description": "用户基本信息"
+        },
+        "用户身份认证信息": {
+            "type": "object",
+            "required": [
+                "idCard",
+                "idCardType",
+                "realName"
+            ],
+            "properties": {
+                "geetest_challenge": {
+                    "type": "string"
+                },
+                "geetest_seccode": {
+                    "type": "string"
+                },
+                "geetest_validate": {
+                    "type": "string"
+                },
+                "idCard": {
+                    "type": "string",
+                    "example": "44030419920919207x",
+                    "description": "证件号码"
+                },
+                "idCardType": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1,
+                    "description": "证件类型"
+                },
+                "imageUrl": {
+                    "type": "string"
+                },
+                "realName": {
+                    "type": "string",
+                    "example": "Doug Lea",
+                    "description": "姓名"
+                }
+            },
+            "title": "用户身份认证信息"
+        },
+        "登录表单内容": {
+            "type": "object",
+            "properties": {
+                "countryCode": {
+                    "type": "string",
+                    "example": "+86",
+                    "description": "国际电话区号"
+                },
+                "ga_code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "geetest_challenge": {
+                    "type": "string"
+                },
+                "geetest_seccode": {
+                    "type": "string"
+                },
+                "geetest_validate": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "e10adc3949ba59abbe56e057f20f883e",
+                    "description": "密码"
+                },
+                "type": {
+                    "type": "integer",
+                    "format": "int32",
+                    "example": 1,
+                    "description": "用户类型"
+                },
+                "username": {
+                    "type": "string",
+                    "example": "qiang",
+                    "description": "用户名"
+                }
+            },
+            "title": "登录表单内容",
+            "description": "登录表单内容"
+        }
+    }
+}

@@ -1,0 +1,36 @@
+{
+  "groups": [
+    {
+      "name": "spring.disruptor",
+      "type": "com.bjsxt.disruptor.DisruptorProperties",
+      "sourceType": "com.bjsxt.disruptor.DisruptorProperties"
+    },
+    {
+      "name": "spring.match",
+      "type": "com.bjsxt.match.MatchEngineProperties",
+      "sourceType": "com.bjsxt.match.MatchEngineProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spring.disruptor.is-multi-producer",
+      "type": "java.lang.Boolean",
+      "description": "是否支持多生产者",
+      "sourceType": "com.bjsxt.disruptor.DisruptorProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "spring.disruptor.ring-buffer-size",
+      "type": "java.lang.Integer",
+      "description": "缓冲区的大小",
+      "sourceType": "com.bjsxt.disruptor.DisruptorProperties"
+    },
+    {
+      "name": "spring.match.symbols",
+      "type": "java.util.Map<java.lang.String,com.bjsxt.match.MatchEngineProperties$CoinScale>",
+      "description": "交易对的信息",
+      "sourceType": "com.bjsxt.match.MatchEngineProperties"
+    }
+  ],
+  "hints": []
+}
